@@ -1,6 +1,10 @@
 import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+import 'dart:convert';
+import 'dart:typed_data';
+import 'package:flutter/widgets.dart';
+import 'package:image/image.dart' as img;
 
 class S600SDK {
   static const MethodChannel _channel = MethodChannel('thai_id_card_reader');
@@ -35,5 +39,30 @@ class S600SDK {
       }
       rethrow;
     }
+  }
+
+  static Future<void> printQrCode(String qrData) async {
+    await _channel.invokeMethod('printQrCode', {
+      'barCodeData': qrData,
+    });
+  }
+
+  static Future<void> printBarCode(String qrData) async {
+    await _channel.invokeMethod('printBarCode', {
+      'barCodeData': qrData,
+    });
+  }
+
+  static Future<void> printText(List<Map<String, dynamic>> textList) async {
+    await _channel.invokeMethod('printText', {
+      'items': textList,
+    });
+  }
+
+  static Future<void> printImage(Uint8List imageBytes) async {
+    final base64Image = base64Encode(imageBytes);
+    await _channel.invokeMethod('printImage', {
+      'imageBase64': base64Image,
+    });
   }
 }

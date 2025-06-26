@@ -49,10 +49,49 @@ class _S600ScreenState extends State<S600Screen> {
   Future<void> _printCardData() async {
     try {
       print('Printing card data...');
-      final result = await S600SDK.printerTest();
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(result)),
-      );
+      final ByteData data = await rootBundle.load('assets/dpark-logo-new.png');
+      final Uint8List bytes = data.buffer.asUint8List();
+      // await S600SDK.printImage(bytes);
+      // await S600SDK.printQrCode('test');
+
+      // await S600SDK.printBarCode('test');
+
+      final List<Map<String, dynamic>> items = [
+        {"text": "Dpark"},
+        {"text": "ใบรับรถ", "fontSize": 24},
+        {"text": "ใบเสร็จ", "fontSize": 8, "bold": true},
+        {"text": "เวลาเข้า", "fontSize": 8, "align": "LEFT"},
+        {"text": "เวลาจอด", "fontSize": 8, "align": "CENTER"},
+        {"text": "จำนวนเงิน", "fontSize": 8, "align": "RIGHT"},
+        {"text": "ยอดเงิน", "fontSize": 18, "align": "CENTER"},
+        {"text": "เลขทะเบียน", "fontSize": 8, "underline": true},
+        {
+          "text": "เลขบัตร",
+          "fontSize": 8,
+          "align": "LEFT",
+          "lineSpacing": 40,
+        },
+        {
+          "text": "เลขบัตร",
+          "fontSize": 8,
+          "align": "LEFT",
+          "lineSpacing": 29,
+          "letterSpacing": 25,
+        },
+        // {
+        //   "text": "打印数据字符间距测试\r\n\r\n\r\n",
+        //   "fontSize": 8,
+        //   "align": "LEFT",
+        //   "lineSpacing": 29,
+        //   "letterSpacing": 25,
+        // },
+      ];
+
+      await S600SDK.printText(items);
+      //final result = await S600SDK.printerTest();
+      // ScaffoldMessenger.of(context).showSnackBar(
+      //   SnackBar(content: Text(result)),
+      // );
     } on PlatformException catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Print error: ${e.message}')),

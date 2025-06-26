@@ -20,11 +20,119 @@ import com.kp.ktsdkservice.printer.AidlPrinterListener;
 import com.kp.ktsdkservice.printer.PrintItemObj;
 import com.kp.ktsdkservice.service.AidlDeviceService;
 import com.kp.ktsdkservice.printer.AidlPrinter;
+import static com.kp.ktsdkservice.data.PrinterConstant.BarCodeType.CODE_128;
 
 import java.io.ByteArrayOutputStream;
 import android.os.RemoteException;
 
 public class PrinterUtil {
+
+    public static void printBarCode(Context context, AidlPrinter printer, String qrData) {
+        try {
+            printer.printBarCode(300, 100, CODE_128, qrData, new AidlPrinterListener.Stub() {
+                @Override
+                public void onPrintFinish() throws RemoteException {
+                    printer.prnStart();
+                    printer.printClose();
+                }
+
+                @Override
+                public void onError(int arg0) throws RemoteException {
+                }
+            });
+
+        } catch (RemoteException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    public static void printText(Context context, AidlPrinter printer, ArrayList<PrintItemObj> text) {
+        try {
+            printer.printText(text, new AidlPrinterListener.Stub() {
+                @Override
+                public void onPrintFinish() throws RemoteException {
+                    printer.prnStart();
+                    printer.printClose();
+                }
+
+                @Override
+                public void onError(int arg0) throws RemoteException {
+                }
+            });
+
+        } catch (RemoteException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    public static void printQrCode(Context context, AidlPrinter printer, String qrData) {
+        Bitmap qrcodeBitmap = QRCodeUtil.createQRImage(qrData, 300, 300, null);
+        try {
+            printer.printBmp(0, qrcodeBitmap.getWidth(), qrcodeBitmap.getHeight(), qrcodeBitmap,
+                    new AidlPrinterListener.Stub() {
+                        @Override
+                        public void onPrintFinish() throws RemoteException {
+                            printer.prnStart();
+                            printer.printClose();
+                            // showMessage(getResources().getString(R.string.print_qrcode_success));
+                        }
+
+                        @Override
+                        public void onError(int arg0) throws RemoteException {
+                            // showMessage(getResources().getString(R.string.print_qrcode_error) + arg0);
+                        }
+                    });
+        } catch (RemoteException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    public static void printBitmap(Context context, AidlPrinter printer, Bitmap originalBitmap) {
+        try {
+            if (originalBitmap == null) {
+                Log.e("PrinterUtil", "❌ Bitmap is null");
+                return;
+            }
+
+            // ✅ แปลงเป็น ARGB_8888 (ปลอดภัยสำหรับการพิมพ์)
+            Bitmap safeBitmap = originalBitmap.copy(Bitmap.Config.ARGB_8888, true);
+
+            // ✅ เติมพื้นหลังขาว (เผื่อมี transparency)
+            Bitmap finalBitmap = Bitmap.createBitmap(
+                    safeBitmap.getWidth(),
+                    safeBitmap.getHeight(),
+                    Bitmap.Config.ARGB_8888);
+            Canvas canvas = new Canvas(finalBitmap);
+            canvas.drawColor(Color.WHITE); // พื้นหลังขาว
+            canvas.drawBitmap(safeBitmap, 0, 0, null);
+
+            // ✅ Resize ให้พอดีกับความกว้างของเครื่องพิมพ์
+            int targetWidth = 384;
+            int targetHeight = (int) ((float) finalBitmap.getHeight() / finalBitmap.getWidth() * targetWidth);
+            Bitmap resized = Bitmap.createScaledBitmap(finalBitmap, targetWidth, targetHeight, true);
+
+            // ✅ สั่งพิมพ์
+            printer.printBmp(0, resized.getWidth(), resized.getHeight(), resized, new AidlPrinterListener.Stub() {
+                @Override
+                public void onPrintFinish() throws RemoteException {
+                    Log.d("PrinterUtil", "✅ Print finished");
+                    printer.prnStart();
+                    printer.printClose();
+                }
+
+                @Override
+                public void onError(int code) throws RemoteException {
+                    Log.e("PrinterUtil", "❌ Print error: " + code);
+                }
+            });
+
+        } catch (Exception e) {
+            Log.e("PrinterUtil", "❌ Exception during bitmap print", e);
+        }
+    }
 
     public static void printImageFromAssets(Context context, AidlPrinter printer, String assetFileName) {
         try {
