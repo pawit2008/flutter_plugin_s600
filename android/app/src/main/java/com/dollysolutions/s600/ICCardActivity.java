@@ -36,15 +36,7 @@ import android.app.Activity;
 public class ICCardActivity extends Activity {
 	com.kp.ktsdkservice.data.APDU_RESP resp;
 
-	private AidlICCard iccard;
-
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		iccard = SmartPosApplication.getInstance().aidlICCard;
-	}
-
-	private String readField(byte p1, byte p2, int length) throws RemoteException, UnsupportedEncodingException {
+	public static String readField(AidlICCard iccard, byte p1, byte p2, int length) throws RemoteException, UnsupportedEncodingException {
 		APDU_SEND send = new APDU_SEND();
 		send.Command = new byte[] { (byte) 0x80, (byte) 0xB0, p1, p2 };
 		send.Lc = 2;
@@ -60,7 +52,7 @@ public class ICCardActivity extends Activity {
 		}
 	}
 
-	private byte[] readPhoto() throws RemoteException, InterruptedException {
+	public static byte[] readPhoto(AidlICCard iccard) throws RemoteException, InterruptedException {
 		ByteArrayOutputStream photo = new ByteArrayOutputStream();
 
 		int[][] photoOffsets = {
@@ -168,7 +160,7 @@ public class ICCardActivity extends Activity {
 	}
 
 	// 00A404000E315041592E5359532E4444463031
-	public Map<String, String> readThaiIDCard() {
+	public static Map<String, String> readThaiIDCard(AidlICCard iccard) {
 		try {
 			if (iccard != null) {
 				byte[] data = iccard.iccInit((byte) 0);
@@ -256,19 +248,8 @@ public class ICCardActivity extends Activity {
 		return result;
 	}
 
-	public void apduComm(View v) {
-		Map<String, String> data = readThaiIDCard();
-		for (String key : data.keySet()) {
-			Log.d("ThaiID", key + ": " + data.get(key));
-		}
-	}
-
-	private String byteToHex(byte b) {
+	private static String byteToHex(byte b) {
 		return String.format("%02X", b & 0xFF);
 	}
 
-	@Override
-	public void onDestroy() {
-		super.onDestroy();
-	}
 }

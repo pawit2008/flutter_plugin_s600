@@ -73,8 +73,7 @@ public class ThaiIdCardReaderPlugin implements MethodChannel.MethodCallHandler {
         return;
       }
 
-      ICCardActivity icCardActivity = new ICCardActivity();
-      Map<String, String> cardData = icCardActivity.readThaiIDCard();
+      Map<String, String> cardData = ICCardActivity.readThaiIDCard(icCard);
 
       if (cardData != null && !cardData.isEmpty()) {
         result.success(cardData);
