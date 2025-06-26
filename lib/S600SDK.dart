@@ -20,15 +20,9 @@ class S600SDK {
 
   static Future<String> printerTest() async {
     try {
-      print('🔄 [1/3] Starting printer test in Dart...');
-      print('🔄 [2/3] Channel: ${_channel.name}');
-      print('🔄 [2.5/3] Checking method implementation...');
-      final isImplemented = await _channel.invokeMethod<bool>('isMethodImplemented', 'printerTest');
-      print('🔄 [2.7/3] Method implemented: $isImplemented');
-      
-      print('🔄 [3/3] Invoking native method...');
+      print('🔄 Starting printer test...');
       final result = await _channel.invokeMethod('printerTest');
-      print('✅ [4/4] Native method completed with result: $result');
+      print('✅ Printer test completed with result: $result');
       return result;
     } on PlatformException catch (e) {
       print('❌ Printer test failed: ${e.message}');

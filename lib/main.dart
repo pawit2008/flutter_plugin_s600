@@ -52,9 +52,13 @@ class _S600ScreenState extends State<S600Screen> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(result)),
       );
+    } on PlatformException catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Print error: ${e.message}')),
+      );
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Print failed: ${e.toString()}')),
+        SnackBar(content: Text('Print failed: $e')),
       );
     }
   }

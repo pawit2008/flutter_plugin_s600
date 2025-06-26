@@ -36,8 +36,7 @@ public class ThaiIdCardReaderPlugin implements FlutterPlugin, MethodChannel.Meth
 
     channel = new MethodChannel(
         flutterPluginBinding.getBinaryMessenger(),
-        "thai_id_card_reader",
-        JSONMethodCodec.INSTANCE);
+        "thai_id_card_reader");
     channel.setMethodCallHandler(this);
 
     Log.d(TAG, "✅ Plugin attached to engine");
@@ -55,12 +54,6 @@ public class ThaiIdCardReaderPlugin implements FlutterPlugin, MethodChannel.Meth
         handleReadThaiIDCard(result);
         break;
 
-      case "isMethodImplemented":
-        String methodName = call.argument("method");
-        boolean implemented = methodName != null &&
-            (methodName.equals("readThaiIDCard") || methodName.equals("printerTest"));
-        result.success(implemented);
-        break;
       case "printerTest":
         handlePrinterTest(result);
         break;
