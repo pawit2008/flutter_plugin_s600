@@ -2,7 +2,7 @@ package com.dollysolutions.s600;
 
 import static com.dollysolutions.s600.util.getCurTime;
 import static com.kp.ktsdkservice.data.PrinterConstant.BarCodeType.CODE_39;
-import com.example.thai_id_card_reader_app.R;
+import com.dollysolutions.s600.R;
 
 import android.content.Context;
 import android.graphics.Bitmap;

@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.thai_id_card_reader_app"
+        namespace "com.dollysolutions.s600"  // ✅ ใช้แทน package ใน Manifest
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -20,7 +20,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.example.thai_id_card_reader_app"
+        applicationId = "com.dollysolutions.s600"
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode

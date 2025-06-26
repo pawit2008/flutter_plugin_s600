@@ -10,8 +10,6 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.8
-  thai_id_card_reader_plugin:
-    path: ../thai_id_card_reader_plugin
 
 dev_dependencies:
   flutter_test:
@@ -21,6 +19,9 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/dpark-logo-new.png
+    - assets/canvas.bmp
 
 # ✅ เพิ่ม config สำหรับ flutter_launcher_icons ด้านล่างนี้
 flutter_launcher_icons:

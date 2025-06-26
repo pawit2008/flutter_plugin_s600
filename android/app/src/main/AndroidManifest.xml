@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.thai_id_card_reader_app">
+    >
 
     <application
         android:name="com.dollysolutions.s600.SmartPosApplication"
