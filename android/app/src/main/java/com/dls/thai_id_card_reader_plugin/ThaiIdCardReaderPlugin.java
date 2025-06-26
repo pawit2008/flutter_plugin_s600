@@ -76,20 +76,31 @@ public class ThaiIdCardReaderPlugin implements FlutterPlugin, MethodChannel.Meth
 
   private void handlePrinterTest(MethodChannel.Result result) {
     try {
-      Log.d(TAG, "📤 printerTest method called");
+      Log.d(TAG, "📤 printerTest method called - checking printer service");
 
-      AidlPrinter printer = SmartPosApplication.getInstance().printer;
+      // Add delay to ensure service is bound
+      int retryCount = 0;
+      AidlPrinter printer = null;
+      
+      while (retryCount < 5 && printer == null) {
+        printer = SmartPosApplication.getInstance().printer;
+        if (printer == null) {
+          Log.d(TAG, "Waiting for printer service to bind...");
+          Thread.sleep(500);
+          retryCount++;
+        }
+      }
 
       if (printer == null) {
-        Log.e(TAG, "❌ AidlPrinter is NULL - likely service not bound yet");
-        result.error("PRINTER_NULL", "Printer service not available", null);
+        Log.e(TAG, "❌ AidlPrinter is NULL after retries");
+        result.error("PRINTER_NULL", "Printer service not available after retries", null);
         return;
       }
 
-      Log.d(TAG, "📤 Calling PrinterUtil.printReceipt()");
+      Log.d(TAG, "📤 Printer service available - printing test receipt");
       PrinterUtil.printReceipt(context, printer);
 
-      result.success("Printer OK");
+      result.success("Printed test receipt successfully");
 
     } catch (Exception e) {
       Log.e(TAG, "❌ Exception during printerTest", e);

@@ -48,9 +48,15 @@ class _S600ScreenState extends State<S600Screen> {
   Future<void> _printCardData() async {
     try {
       print('Printing card data...');
-
-      final data = await S600SDK.printerTest();
-    } catch (e) {}
+      final result = await S600SDK.printerTest();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(result)),
+      );
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Print failed: ${e.toString()}')),
+      );
+    }
   }
 
   Widget _buildCardData() {

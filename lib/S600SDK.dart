@@ -18,14 +18,18 @@ class S600SDK {
     }
   }
 
-  static Future<void> printerTest() async {
+  static Future<String> printerTest() async {
     try {
       if (kDebugMode) {
-        print('✅ Printer testing..');
+        print('✅ Calling native printer test...');
       }
-      await _channel.invokeMethod('printerTest');
+      final result = await _channel.invokeMethod('printerTest');
+      if (kDebugMode) {
+        print('✅ Printer test result: $result');
+      }
+      return result;
     } on PlatformException catch (e) {
-      throw Exception("L14 Failed to read ID card: ${e.message}");
+      throw Exception("Failed to test printer: ${e.message}");
     }
   }
 }
