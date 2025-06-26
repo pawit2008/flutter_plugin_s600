@@ -20,16 +20,19 @@ class S600SDK {
 
   static Future<String> printerTest() async {
     try {
-      if (kDebugMode) {
-        print('✅ Calling native printer test...');
-      }
+      print('🔄 [1/3] Starting printer test in Dart...');
+      print('🔄 [2/3] Invoking native method channel...');
       final result = await _channel.invokeMethod('printerTest');
-      if (kDebugMode) {
-        print('✅ Printer test result: $result');
-      }
+      print('✅ [3/3] Native method completed with result: $result');
       return result;
     } on PlatformException catch (e) {
+      print('❌ Printer test failed: ${e.message}');
+      print('❌ Details: ${e.details}');
+      print('❌ Stacktrace: ${e.stacktrace}');
       throw Exception("Failed to test printer: ${e.message}");
+    } catch (e) {
+      print('❌ Unexpected error in printerTest: $e');
+      rethrow;
     }
   }
 }

@@ -76,7 +76,24 @@ public class ThaiIdCardReaderPlugin implements FlutterPlugin, MethodChannel.Meth
 
   private void handlePrinterTest(MethodChannel.Result result) {
     try {
-      Log.d(TAG, "📤 printerTest method called - checking printer service");
+      Log.d(TAG, "1️⃣ printerTest method called - entry point");
+      
+      // Verify channel is working
+      if (channel == null) {
+        Log.e(TAG, "❌ Channel is null!");
+        result.error("CHANNEL_NULL", "Method channel not initialized", null);
+        return;
+      }
+      Log.d(TAG, "2️⃣ Channel verification passed");
+
+      // Check application instance
+      SmartPosApplication app = SmartPosApplication.getInstance();
+      if (app == null) {
+        Log.e(TAG, "❌ SmartPosApplication instance is null!");
+        result.error("APP_NULL", "Application instance not available", null);
+        return;
+      }
+      Log.d(TAG, "3️⃣ Application instance verified");
 
       // Add delay to ensure service is bound
       int retryCount = 0;
