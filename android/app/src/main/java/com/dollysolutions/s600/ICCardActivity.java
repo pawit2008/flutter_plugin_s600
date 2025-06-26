@@ -104,7 +104,7 @@ public class ICCardActivity extends Activity {
 		return full;
 	}
 
-	private int findEOI(byte[] data) {
+	private static int findEOI(byte[] data) {
 		for (int i = data.length - 2; i >= 0; i--) {
 			if ((data[i] & 0xFF) == 0xFF && (data[i + 1] & 0xFF) == 0xD9) {
 				return i;
@@ -113,7 +113,7 @@ public class ICCardActivity extends Activity {
 		return -1;
 	}
 
-	private byte[] trimJpeg(byte[] data) {
+	private static byte[] trimJpeg(byte[] data) {
 		for (int i = data.length - 2; i >= 0; i--) {
 			if ((data[i] & 0xFF) == 0xFF && (data[i + 1] & 0xFF) == 0xD9) {
 				return Arrays.copyOfRange(data, 0, i + 2); // ครอบคลุมถึง FF D9
@@ -122,7 +122,7 @@ public class ICCardActivity extends Activity {
 		return data; // fallback ถ้าไม่เจอ
 	}
 
-	private boolean hasJpegMarkers(byte[] data) {
+	private static boolean hasJpegMarkers(byte[] data) {
 		for (int i = 0; i < data.length - 1; i++) {
 			if ((data[i] & 0xFF) == 0xFF && (data[i + 1] & 0xFF) == 0xD8) {
 				for (int j = i + 2; j < data.length - 1; j++) {
@@ -206,18 +206,18 @@ public class ICCardActivity extends Activity {
 			Thread.sleep(200);
 
 			// Read all fields
-			result.put("CID", readField((byte) 0x00, (byte) 0x04, 13));
-			result.put("FullnameTH", readField((byte) 0x00, (byte) 0x11, 100));
-			result.put("FullnameEN", readField((byte) 0x00, (byte) 0x75, 100));
-			result.put("DateOfBirth", readField((byte) 0x00, (byte) 0xD9, 8));
-			result.put("Gender", readField((byte) 0x00, (byte) 0xE1, 1));
-			result.put("Issuer", readField((byte) 0x00, (byte) 0xF6, 100));
-			result.put("IssueDate", readField((byte) 0x01, (byte) 0x67, 8));
-			result.put("ExpireDate", readField((byte) 0x01, (byte) 0x6F, 8));
-			result.put("Address", readField((byte) 0x15, (byte) 0x79, 100));
+			result.put("CID", readField(iccard, (byte) 0x00, (byte) 0x04, 13));
+			result.put("FullnameTH", readField(iccard, (byte) 0x00, (byte) 0x11, 100));
+			result.put("FullnameEN", readField(iccard, (byte) 0x00, (byte) 0x75, 100));
+			result.put("DateOfBirth", readField(iccard, (byte) 0x00, (byte) 0xD9, 8));
+			result.put("Gender", readField(iccard, (byte) 0x00, (byte) 0xE1, 1));
+			result.put("Issuer", readField(iccard, (byte) 0x00, (byte) 0xF6, 100));
+			result.put("IssueDate", readField(iccard, (byte) 0x01, (byte) 0x67, 8));
+			result.put("ExpireDate", readField(iccard, (byte) 0x01, (byte) 0x6F, 8));
+			result.put("Address", readField(iccard, (byte) 0x15, (byte) 0x79, 100));
 
 			// Optional: load photo as base64
-			byte[] fullPhoto = readPhoto();
+			byte[] fullPhoto = readPhoto(iccard);
 
 			byte[] jpegPhoto = trimJpeg(fullPhoto);
 
