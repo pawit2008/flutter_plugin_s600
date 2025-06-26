@@ -36,7 +36,8 @@ import android.app.Activity;
 public class ICCardActivity extends Activity {
 	com.kp.ktsdkservice.data.APDU_RESP resp;
 
-	public static String readField(AidlICCard iccard, byte p1, byte p2, int length) throws RemoteException, UnsupportedEncodingException {
+	public static String readField(AidlICCard iccard, byte p1, byte p2, int length)
+			throws RemoteException, UnsupportedEncodingException {
 		APDU_SEND send = new APDU_SEND();
 		send.Command = new byte[] { (byte) 0x80, (byte) 0xB0, p1, p2 };
 		send.Lc = 2;
