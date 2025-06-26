@@ -20,13 +20,13 @@ public class ThaiIdCardReaderPlugin implements MethodChannel.MethodCallHandler {
   private static final String TAG = "ThaiPlugin";
   private final Context context;
   private final MethodChannel channel;
-  private final ICCardActivity icCardActivity;
+  private final Context context;
+  private final MethodChannel channel;
 
   public ThaiIdCardReaderPlugin(Context context, BinaryMessenger messenger) {
     this.context = context;
     this.channel = new MethodChannel(messenger, "thai_id_card_reader");
     this.channel.setMethodCallHandler(this);
-    this.icCardActivity = new ICCardActivity();
     Log.d(TAG, "✅ Plugin manually registered");
   }
 
@@ -53,7 +53,31 @@ public class ThaiIdCardReaderPlugin implements MethodChannel.MethodCallHandler {
 
   private void handleReadThaiIDCard(MethodChannel.Result result) {
     try {
+      SmartPosApplication app = SmartPosApplication.getInstance();
+      if (app == null) {
+        result.error("APP_NULL", "SmartPosApplication instance not available", null);
+        return;
+      }
+
+      AidlICCard icCard = null;
+      int retry = 0;
+      while (retry < 5 && icCard == null) {
+        icCard = app.aidlICCard;
+        if (icCard == null) {
+          Log.d(TAG, "⌛ Waiting for ICCard service...");
+          Thread.sleep(500);
+          retry++;
+        }
+      }
+
+      if (icCard == null) {
+        result.error("ICCARD_NULL", "ICCard service not available after retries", null);
+        return;
+      }
+
+      ICCardActivity icCardActivity = new ICCardActivity();
       Map<String, String> cardData = icCardActivity.readThaiIDCard();
+      
       if (cardData != null && !cardData.isEmpty()) {
         result.success(cardData);
       } else {

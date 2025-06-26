@@ -36,7 +36,13 @@ import android.app.Activity;
 public class ICCardActivity extends Activity {
 	com.kp.ktsdkservice.data.APDU_RESP resp;
 
-	private AidlICCard iccard = SmartPosApplication.getInstance().aidlICCard;
+	private AidlICCard iccard;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		iccard = SmartPosApplication.getInstance().aidlICCard;
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
