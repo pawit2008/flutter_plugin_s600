@@ -44,11 +44,6 @@ public class ICCardActivity extends Activity {
 		iccard = SmartPosApplication.getInstance().aidlICCard;
 	}
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-	}
-
 	private String readField(byte p1, byte p2, int length) throws RemoteException, UnsupportedEncodingException {
 		APDU_SEND send = new APDU_SEND();
 		send.Command = new byte[] { (byte) 0x80, (byte) 0xB0, p1, p2 };

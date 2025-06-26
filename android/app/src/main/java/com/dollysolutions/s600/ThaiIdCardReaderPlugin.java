@@ -9,7 +9,7 @@ import com.dollysolutions.s600.ICCardActivity;
 import com.dollysolutions.s600.PrinterUtil;
 import com.dollysolutions.s600.SmartPosApplication;
 import com.kp.ktsdkservice.printer.AidlPrinter;
-
+import om.kp.ktsdkservice.iccard.AidlICCard;
 import java.util.Map;
 
 import io.flutter.plugin.common.MethodCall;
@@ -18,8 +18,6 @@ import io.flutter.plugin.common.BinaryMessenger;
 
 public class ThaiIdCardReaderPlugin implements MethodChannel.MethodCallHandler {
   private static final String TAG = "ThaiPlugin";
-  private final Context context;
-  private final MethodChannel channel;
   private final Context context;
   private final MethodChannel channel;
 
@@ -77,7 +75,7 @@ public class ThaiIdCardReaderPlugin implements MethodChannel.MethodCallHandler {
 
       ICCardActivity icCardActivity = new ICCardActivity();
       Map<String, String> cardData = icCardActivity.readThaiIDCard();
-      
+
       if (cardData != null && !cardData.isEmpty()) {
         result.success(cardData);
       } else {
