@@ -19,6 +19,7 @@ import java.util.Map;
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
+import io.flutter.plugin.common.JSONMethodCodec;
 
 /** ThaiIdCardReaderPlugin */
 public class ThaiIdCardReaderPlugin implements FlutterPlugin, MethodChannel.MethodCallHandler {
@@ -36,8 +37,7 @@ public class ThaiIdCardReaderPlugin implements FlutterPlugin, MethodChannel.Meth
     channel = new MethodChannel(
         flutterPluginBinding.getBinaryMessenger(),
         "thai_id_card_reader",
-        JSONMethodCodec.INSTANCE
-    );
+        JSONMethodCodec.INSTANCE);
     channel.setMethodCallHandler(this);
 
     Log.d(TAG, "✅ Plugin attached to engine");
@@ -57,7 +57,7 @@ public class ThaiIdCardReaderPlugin implements FlutterPlugin, MethodChannel.Meth
 
       case "isMethodImplemented":
         String methodName = call.argument("method");
-        boolean implemented = methodName != null && 
+        boolean implemented = methodName != null &&
             (methodName.equals("readThaiIDCard") || methodName.equals("printerTest"));
         result.success(implemented);
         break;
@@ -88,7 +88,7 @@ public class ThaiIdCardReaderPlugin implements FlutterPlugin, MethodChannel.Meth
   private void handlePrinterTest(MethodChannel.Result result) {
     try {
       Log.d(TAG, "1️⃣ printerTest method called - entry point");
-      
+
       // Verify channel is working
       if (channel == null) {
         Log.e(TAG, "❌ Channel is null!");
@@ -109,7 +109,7 @@ public class ThaiIdCardReaderPlugin implements FlutterPlugin, MethodChannel.Meth
       // Add delay to ensure service is bound
       int retryCount = 0;
       AidlPrinter printer = null;
-      
+
       while (retryCount < 5 && printer == null) {
         printer = SmartPosApplication.getInstance().printer;
         if (printer == null) {
