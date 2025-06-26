@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:background="#FFFFFF"
+    android:orientation="horizontal" >
+
+    <include layout="@layout/left_scroll" />
+
+    <LinearLayout
+        android:id="@+id/main_linearlayout"
+        android:layout_width="0dip"
+        android:layout_height="fill_parent"
+        android:layout_weight="3"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/read_psam"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="readPsam"
+            android:text="@string/psim_card_no_str" />
+
+        <Button
+            android:id="@+id/read_serial"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="readSerial"
+            android:text="@string/device_serial_no_str" />
+
+        <Button
+            android:id="@+id/read_manuserial"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="readManuSerial"
+            android:text="@string/manufacturer_serial_no_str" />
+
+        <Button
+            android:id="@+id/get_dev"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="getDev"
+            android:text="@string/device_infos_str" />
+
+        <Button
+            android:id="@+id/get_cursdk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="getCurSdk"
+            android:text="@string/current_sdk_versions_str" />
+
+        <Button
+            android:id="@+id/release"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="release"
+            android:text="@string/release_str" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="stateKeyBorad"
+            android:text="@string/keyboard_status_str" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="openKeyBorad"
+            android:text="@string/open_keyboard_str" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="closeKeyBorad"
+            android:text="@string/close_keyboard_str" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="getIp"
+            android:text="@string/ip_address_str" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="getMac"
+            android:text="@string/mac_address_str" />
+    </LinearLayout>
+
+</LinearLayout>

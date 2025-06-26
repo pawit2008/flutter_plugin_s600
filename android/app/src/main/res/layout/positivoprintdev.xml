@@ -1,0 +1,149 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#FFFFFF"
+    android:orientation="horizontal" >
+    <include layout="@layout/left_scroll" />
+    <LinearLayout
+        android:id="@+id/main_linearlayout"
+        android:layout_width="0dip"
+        android:layout_height="fill_parent"
+        android:layout_weight="3"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical" >
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:onClick="printInit"
+                android:text="@string/print_init"
+                android:textSize="10sp" />
+
+        <!-- 获取打印状态 -->
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:onClick="getPrintState"
+                android:text="@string/print_status_str"
+                android:textSize="10sp" />
+
+
+        <!-- 打印文本 -->
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="printText"
+            android:text="@string/print_text_str"
+            android:textSize="10sp" />
+
+        <!-- 打印条码 -->
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="printBarCode"
+            android:text="@string/print_barcode_str"
+            android:textSize="10sp" />
+
+        <!-- 打印位图 -->
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="printBitmap"
+            android:text="@string/print_bitmap_str"
+            android:textSize="10sp" />
+        <!-- 设置打印灰度 -->
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="setPrintHGray"
+            android:text="@string/set_print_hgray_str"
+            android:textSize="10sp" />
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="setPrintLGray"
+            android:text="@string/set_print_lgray_str"
+            android:textSize="10sp" />
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="setPrintNGray"
+            android:text="@string/set_print_ngray_str"
+            android:textSize="10sp" />
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="printBigBuy"
+            android:text="@string/print_big_buy_str"
+            android:textSize="10sp" />
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="printSmBuy"
+            android:text="@string/print_small_buy_str"
+            android:textSize="10sp" />
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="printBitmaps"
+            android:text="@string/print_bitmaps_str"
+            android:textSize="10sp" />
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="printQrCode"
+            android:text="@string/print_qrcode_str"
+            android:textSize="10sp" />
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="printSymbol"
+            android:text="@string/print_symbol"
+            android:textSize="10sp" />
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="printStep"
+            android:text="@string/print_step"
+            android:textSize="10sp" />
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="printTemperature"
+            android:text="@string/print_temperature"
+            android:textSize="10sp" />
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:onClick="printSetpWrapPaper"
+                android:text="@string/print_setpwrappaper"
+                android:textSize="10sp" />
+
+        </LinearLayout>
+
+
+
+        </ScrollView>
+
+    </LinearLayout>
+</LinearLayout>

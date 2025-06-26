@@ -1,0 +1,57 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#FFFFFF"
+    android:orientation="horizontal" >
+
+    <include layout="@layout/left_scroll" />
+
+    <LinearLayout
+        android:id="@+id/main_linearlayout"
+        android:layout_width="0dip"
+        android:layout_height="fill_parent"
+        android:layout_weight="3"
+        android:orientation="vertical" >
+
+        <!-- 判断POS机底座是否在位 -->
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="isCoupled"
+            android:text="@string/basis_test"
+            android:textSize="20sp" />
+
+        <!-- 获取底座串口管理对象 -->
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="setPrintGray"
+            android:text="@string/serialport_manager_object"
+            android:textSize="20sp" />
+
+        <!-- 获取底座串口数目 -->
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="getCount"
+            android:text="@string/basis_serialport_no"
+            android:textSize="20sp" />
+
+        <!-- 枚举底座串口设备 -->
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="enumSerialports"
+            android:text="@string/device_name"
+            android:textSize="20sp" />
+
+        <!-- 获取底座串口设备操作对象 -->
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="getSerialport"
+            android:text="@string/serialport_device_object"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+</LinearLayout>

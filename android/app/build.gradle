@@ -1,0 +1,64 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
+android {
+    namespace = "com.example.thai_id_card_reader_app"
+    compileSdk = flutter.compileSdkVersion
+    ndkVersion = flutter.ndkVersion
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    defaultConfig {
+        applicationId = "com.example.thai_id_card_reader_app"
+        minSdk = flutter.minSdkVersion
+        targetSdk = flutter.targetSdkVersion
+        versionCode = flutter.versionCode
+        versionName = flutter.versionName
+    }
+
+    buildTypes {
+        release {
+            signingConfig = signingConfigs.debug
+        }
+    }
+
+    // ✅ เพิ่มให้ android/app/libs ถูกมองเห็น
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+             aidl.srcDirs = ['src/main/aidl']   
+                java.srcDirs = ['src/main/java']
+        }
+    }
+}
+
+flutter {
+    source = "../.."
+}
+
+// ✅ repositories ต้องอยู่นอก android{} และ plugin{}
+repositories {
+    google()
+    mavenCentral()
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+dependencies {
+    implementation(name: 'KTPsdk', ext: 'aar') // ✅ โหลด KTPsdk.aar จาก app/libs
+      implementation files('libs/core-3.2.1.jar')
+          implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.9.0'
+}

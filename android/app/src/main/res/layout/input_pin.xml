@@ -1,0 +1,87 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:background="#FFFFFF"
+    android:orientation="horizontal">
+
+    <include layout="@layout/left_scroll" />
+
+    <LinearLayout
+        android:id="@+id/main_linearlayout"
+        android:layout_width="0dip"
+        android:layout_height="fill_parent"
+        android:layout_weight="3"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical">
+
+                <Button
+                    style="@style/leftbut"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="inputPIN"
+                    android:text="@string/pin_input" />
+
+<!--                <Button-->
+<!--                    style="@style/leftbut"-->
+<!--                    android:layout_width="fill_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:visibility="gone"-->
+<!--                    android:onClick="readCardType"-->
+<!--                    android:text="@string/card_type_str" />-->
+
+<!--                <Button-->
+<!--                    style="@style/leftbut"-->
+<!--                    android:layout_width="fill_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:onClick="isExists"-->
+<!--                    android:text="@string/swipe_card_str" />-->
+
+<!--                <Button-->
+<!--                    style="@style/leftbut"-->
+<!--                    android:layout_width="fill_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:onClick="reset"-->
+<!--                    android:visibility="gone"-->
+<!--                    android:text="@string/reset_str" />-->
+
+<!--                <Button-->
+<!--                    style="@style/leftbut"-->
+<!--                    android:layout_width="fill_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:onClick="getCardCode"-->
+<!--                    android:visibility="gone"-->
+<!--                    android:text="获取卡片内码" />-->
+
+<!--                <Button-->
+<!--                    style="@style/leftbut"-->
+<!--                    android:layout_width="fill_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:onClick="apduComm"-->
+<!--                    android:text="@string/apdu_commond_str" />-->
+
+<!--                <Button-->
+<!--                    style="@style/leftbut"-->
+<!--                    android:layout_width="fill_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:onClick="halt"-->
+<!--                    android:visibility="gone"-->
+<!--                    android:text="@string/halt_nfc_card_str" />-->
+
+
+
+
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+</LinearLayout>

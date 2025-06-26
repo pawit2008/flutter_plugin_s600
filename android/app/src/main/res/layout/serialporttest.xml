@@ -1,0 +1,70 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#FFFFFF"
+    android:orientation="horizontal" >
+
+    <include layout="@layout/left_scroll" />
+
+    <LinearLayout
+        android:id="@+id/main_linearlayout"
+        android:layout_width="0dip"
+        android:layout_height="fill_parent"
+        android:layout_weight="3"
+        android:orientation="vertical" >
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <RadioButton
+                android:id="@+id/id_port_one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="setPortOne"
+                android:enabled="false"
+                android:text="@string/port_one_str" />
+
+            <RadioButton
+                android:id="@+id/id_port_two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick = "setPortTwo"
+                android:checked="true"
+                android:text="@string/port_two_str" />
+        </RadioGroup>
+
+        <Button
+            style="@style/main_test"
+            android:gravity="center"
+            android:onClick="open"
+            android:text="@string/open_port_str" />
+
+        <Button
+            style="@style/main_test"
+            android:gravity="center"
+            android:onClick="init"
+            android:text="@string/init_port_str" />
+
+        <Button
+            style="@style/main_test"
+            android:gravity="center"
+            android:onClick="sendData"
+            android:text="@string/send_data_str" />
+
+        <Button
+            style="@style/main_test"
+            android:gravity="center"
+            android:onClick="receiveData"
+            android:text="@string/receive_data_str" />
+
+        <Button
+            style="@style/main_test"
+            android:gravity="center"
+            android:onClick="close"
+            android:text="@string/close_port_str" />
+    </LinearLayout>
+
+</LinearLayout>

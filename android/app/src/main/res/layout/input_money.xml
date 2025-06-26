@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+      <LinearLayout 
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal">
+          <TextView 
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="@string/please_input_amount"
+              android:textColor="#000000"
+              android:textSize="40dp"/>
+      </LinearLayout>
+      <EditText 
+          android:id="@+id/input_money"
+          android:layout_width="520dip"
+          android:layout_height="70dip"
+          android:layout_marginTop="40dip"
+          android:paddingLeft="10dip"
+          android:singleLine="true"
+	      android:ellipsize="end"
+	      android:maxLength="10"
+	      android:inputType="number"
+	      android:textSize="30dp"
+	      android:text = "0.00"
+	      android:hint="@string/amount"/>
+      <Button 
+          android:id="@+id/ok_button"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/next_step"
+          android:textColor="#000000"                
+          android:textSize="30dp"/>
+</LinearLayout>

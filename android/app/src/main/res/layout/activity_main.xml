@@ -1,0 +1,75 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    tools:context=".MainActivity" >
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <!-- 刷卡设备 -->
+
+            <Button
+                style="@style/main_test"
+                android:onClick="onMagCardDevClick"
+                android:text="@string/magcard" />
+            <!-- 打印机设备 -->
+
+            <Button
+                style="@style/main_test"
+                android:onClick="onPrinterClick"
+                android:text="@string/printer" />
+            <!-- 密码键盘设备 -->
+
+            <Button
+                style="@style/main_test"
+                android:onClick="onPinPadClick"
+                android:text="@string/pinpad" />
+            <!-- 串口设备 -->
+
+            <Button
+                style="@style/main_test"
+                android:onClick="onSerialPortClick"
+                android:text="@string/serialport" />
+            <!-- PSAM设备 -->
+
+            <Button
+                style="@style/main_test"
+                android:onClick="onPsamClick"
+                android:text="@string/psamcard" />
+            <!-- 接触式IC卡设备 -->
+
+            <Button
+                style="@style/main_test"
+                android:onClick="onICCardClick"
+                android:text="@string/iccontactcard" />
+            <!-- 非接触IC卡设备 -->
+
+            <Button
+                style="@style/main_test"
+                android:onClick="onRFCardClick"
+                android:text="@string/rfid" />
+
+            <!-- 系统接口 -->
+
+            <Button
+                style="@style/main_test"
+                android:onClick="onSystemClick"
+                android:text="@string/system" />
+
+            <!-- pboc接口测试 -->
+
+            <Button
+                style="@style/main_test"
+                android:onClick="testPboc"
+                android:text="@string/pboc_test" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

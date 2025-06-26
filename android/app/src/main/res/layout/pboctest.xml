@@ -1,0 +1,206 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:background="#FFFFFF"
+    android:orientation="horizontal" >
+
+    <include layout="@layout/left_scroll" />
+
+    <LinearLayout
+        android:id="@+id/main_linearlayout"
+        android:layout_width="0dip"
+        android:layout_height="fill_parent"
+        android:layout_weight="4"
+        android:orientation="vertical" >
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical" >
+                
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:onClick="checkCard"
+                    android:text="@string/check_card" />
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:onClick="cancelCheckCard"
+                    android:text="@string/cancel_check_card" />
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:onClick="checkCardWithEncryptedTDK"
+                    android:text="@string/check_card_with_encrypted_TDK" />
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:onClick="cancelCheckEncryptedCard"
+                    android:text="@string/cancel_check_encrypted_card" />
+
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:onClick="consume"
+                    android:text="@string/consume" />
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:onClick="readCardOfflineBalance"
+                    android:text="@string/read_e_cash_balance" />
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:onClick="readCardTransLog"
+                    android:text="@string/read_card_transaction_log" />
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:onClick="readCardLoadLog"
+                    android:text="@string/read_the_looped_log" />
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:onClick="readKernelData"
+                    android:text="@string/read_kernel_data" />
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:onClick="readKernelEDData"
+                    android:text="读取内核加密数据" />
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:onClick="addCaParam"
+                    android:text="@string/increase_public_key_parameters" />
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:onClick="updateCaParam"
+                    android:text="@string/update_public_key_parameters" />
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:onClick="delCaParam"
+                    android:text="@string/clear_public_key_parameters" />
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:onClick="clearTransData"
+                    android:text="@string/clear_the_transaction_log" />
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:onClick="abortPboc"
+                    android:text="@string/interrupt_the_PBOC_process" />
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:onClick="endPboc"
+                    android:text="@string/end_the_PBOC_process" />
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:onClick="addAid"
+                    android:text="@string/add_aid" />
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:onClick="updateAid"
+                    android:text="@string/update_aid" />
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:onClick="delAid"
+                    android:text="@string/clear_aid" />
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:onClick="setTlv"
+                    android:text="@string/set_tlv1" />
+
+                <Button
+                    android:id="@+id/code_utf_8"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:onClick="setTlvWithEncoding"
+                    android:text="@string/set_tlv2" />
+
+                <Button
+                    android:id="@+id/code_utf_16"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:onClick="setTlvWithEncoding"
+                    android:text="@string/set_tlv3" />
+
+                <Button
+                    android:id="@+id/code_gbk"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:onClick="setTlvWithEncoding"
+                    android:text="@string/set_tlv4" />
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:onClick="importOnlineResult"
+                    android:text="@string/import_online_result" />
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:onClick="isExistAidPublicKey"
+                    android:text="@string/isexist_aid_publicKey" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+</LinearLayout>

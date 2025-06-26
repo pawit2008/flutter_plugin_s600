@@ -1,0 +1,219 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="#FFFFFF"
+    tools:context=".SystemActivity" >
+
+    <include layout="@layout/left_scroll" />
+
+    <LinearLayout
+        android:id="@+id/main_linearlayout"
+        android:layout_width="0dip"
+        android:layout_height="fill_parent"
+        android:layout_weight="3"
+        android:orientation="vertical" >
+
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical" >
+
+                <Button
+                    android:id="@+id/swipeBut"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="getTerminalSn"
+                    android:text="@string/terminal_sn_str"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/cancelBut"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="installAppBack"
+                    android:text="@string/silent_instal_str"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/standbybut"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="getKSN"
+                    android:text="@string/ksn_str"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="getDriverVersion"
+                    android:text="@string/driver_version_str"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="getCurrentSdkVersion"
+                    android:text="@string/current_sdk_version_str"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="updateSysTime"
+                    android:text="@string/update_system_time_str"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="getStoragePath"
+                    android:text="@string/stroage_path_str"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="updateDriver"
+                    android:text="@string/update_terminal_driver_str"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="getIMSI"
+                    android:text="@string/imsi_no_str"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="getModel"
+                    android:text="@string/terminal_mode_str"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="getICCID"
+                    android:text="@string/iccid_str"
+                    android:textSize="20sp" />
+
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="getIMEI"
+                    android:text="@string/imei_str"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="getHardwareInfo"
+                    android:text="@string/hardware_version_str"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="getSecurityDriverInfo"
+                    android:text="@string/safety_firmware_str"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="getManufactureName"
+                    android:text="@string/manufacturer_name_str"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="getMachineUtilization"
+                    android:text="@string/sys_info_build_type"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="getAndroidOsVersion"
+                    android:text="@string/sys_info_str"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="getAndroidRomVersion"
+                    android:text="@string/sys_version_str"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="getKernelVersionInfo"
+                    android:text="@string/kernel_info_str"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="reboot"
+                    android:text="@string/reboot_str"
+                    android:textSize="20sp" />
+
+
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="getOSSpecsVersion"
+                    android:text="@string/specification_number_str"
+                    android:textSize="20sp" />
+
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="updateFirmware"
+                    android:text="@string/update_firmware_str"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="getUpdateFirmwareState"
+                    android:text="@string/query_update_state_str"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="setAPN"
+                    android:text="@string/set_apn_str"
+                    android:textSize="20sp" />
+                
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="supportSign"
+                    android:text="@string/is_support_native_sign"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="getNativeSignSpecVersion"
+                    android:text="@string/Get_native_sign_spec_version"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+</LinearLayout>

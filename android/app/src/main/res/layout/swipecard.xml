@@ -1,0 +1,58 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#FFFFFF"
+    android:orientation="horizontal"
+    tools:context=".SwipeCardActivity" >
+
+    <include layout="@layout/left_scroll" />
+
+    <LinearLayout
+        android:id="@+id/main_linearlayout"
+        android:layout_width="0dip"
+        android:layout_height="fill_parent"
+        android:layout_weight="3"
+        android:orientation="vertical" >
+
+        <!-- 获取刷卡明文数据-->
+
+        <Button
+            android:id="@+id/swipeBut"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="getTrackData"
+            android:text="@string/track_data_str"
+            android:textSize="20sp" />
+
+        <!-- 获取刷卡密文数据 -->
+
+        <Button
+            android:id="@+id/cancelBut"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="getEncryptTrackData"
+            android:visibility="gone"
+            android:text="@string/encrypt_track_data"
+            android:textSize="20sp" />
+        
+             <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="getEncryptFormatTrackData"
+            android:visibility="gone"
+            android:text="@string/encrypt_format_track_data"
+            android:textSize="20sp" />
+
+        <!-- 取消刷卡 -->
+
+        <Button
+            android:id="@+id/standbybut"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="cancelSwipe"
+            android:text="@string/cancel_swipe_str"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+</LinearLayout>

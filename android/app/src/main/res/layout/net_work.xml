@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:background="#FFFFFF"
+    android:orientation="horizontal" >
+
+    <include layout="@layout/left_scroll" />
+
+    <LinearLayout
+        android:id="@+id/main_linearlayout"
+        android:layout_width="0dip"
+        android:layout_height="fill_parent"
+        android:layout_weight="6"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/connection"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/connection" />
+
+            <Button
+                android:id="@+id/dis_connection"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/disconnect" />
+
+            <Button
+                android:id="@+id/networkview_true"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/set_network_panel_display" />
+
+            <Button
+                android:id="@+id/networkview_false"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/set_network_panel_not_display" />
+
+            <Button
+                android:id="@+id/is_network_enable"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/get_network_panel_is_displayed" />
+
+            <Button
+                android:id="@+id/networkcolor_blue"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/set_panel_blue" />
+
+            <Button
+                android:id="@+id/networkcolor_white"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/set_panel_white" />
+
+            <Button
+                android:id="@+id/get_networkcolor"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/get_panel_color" />
+
+            <Button
+                android:id="@+id/sign_enable"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onSign"
+                android:text="@string/set_3G_signal_is_displayed" />
+
+            <Button
+                android:id="@+id/clockview_enable"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onClock"
+                android:text="@string/set_clock_is_displayed" />
+
+            <Button
+                android:id="@+id/restore"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onRestore"
+                android:text="@string/restore" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="setViewColor"
+                android:text="@string/set_panel_color" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/date_enable"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onDate"
+                android:text="@string/set_date_is_displayed" />
+
+            <Button
+                android:id="@+id/ethView_enable"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onEthView"
+                android:text="@string/set_ethernet_connection_is_displayed" />
+
+            <Button
+                android:id="@+id/wifi_sign"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onWifiSign"
+                android:text="@string/set_wifi_status_coexist_with_3G" />
+
+            <Button
+                android:id="@+id/wifi_enable"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onWifi"
+                android:text="@string/set_display_wifi_icon" />
+
+            <Button
+                android:id="@+id/get_location"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:onClick="getLoaction"
+                android:text="@string/get_web_panel_coordinates" />
+
+            <EditText
+                android:id="@+id/x"
+                android:layout_width="fill_parent"
+                android:layout_height="35dip"
+                android:hint="x" />
+
+            <EditText
+                android:id="@+id/y"
+                android:layout_width="fill_parent"
+                android:layout_height="35dip"
+                android:hint="y" />
+
+            <Button
+                android:id="@+id/set_location"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:onClick="setLoaction"
+                android:text="@string/set_web_panel_coordinates" />
+
+            <Button
+                android:id="@+id/get_dateformat"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onGetDateformat"
+                android:text="@string/get_date_format" />
+
+            <Button
+                android:id="@+id/set_timeformat"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onSetTimeformat"
+                android:text="@string/set_time_format" />
+
+            <Button
+                android:id="@+id/get_timeformat"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onGetTimeformat"
+                android:text="@string/get_time_format" />
+
+            <Button
+                android:id="@+id/set_dateformat"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onSetDateformat"
+                android:text="@string/set_date_format" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

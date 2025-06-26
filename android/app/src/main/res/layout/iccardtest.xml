@@ -1,0 +1,62 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:background="#FFFFFF"
+    android:orientation="horizontal" >
+
+    <include layout="@layout/left_scroll" />
+
+    <LinearLayout
+        android:id="@+id/main_linearlayout"
+        android:layout_width="0dip"
+        android:layout_height="fill_parent"
+        android:layout_weight="3"
+        android:orientation="vertical" >
+
+        <Button
+            style="@style/leftbut"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="open"
+            android:text="@string/open" />
+
+        <Button
+            style="@style/leftbut"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:onClick="cardReset"
+            android:text="@string/reset" />
+
+        <Button
+            style="@style/leftbut"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="isExists"
+            android:text="@string/check_card" />
+
+        <Button
+            style="@style/leftbut"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="apduComm"
+            android:text="@string/send_apdu_instruction" />
+
+        <Button
+            style="@style/leftbut"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="halt"
+            android:visibility="gone"
+            android:text="@string/disconnect" />
+
+        <Button
+            style="@style/leftbut"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="close"
+            android:text="@string/close" />
+    </LinearLayout>
+
+</LinearLayout>
