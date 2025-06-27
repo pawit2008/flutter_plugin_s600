@@ -1,6 +1,7 @@
 # DLS S600 Flutter Plugin
 
 A Flutter plugin for Dolly Solutions S600 device functionality including:
+
 - Barcode printing
 - QR code generation
 - Smart card operations
