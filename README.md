@@ -21,20 +21,32 @@ dependencies:
 Import the package:
 
 ```dart
-import 'package:dls_s600/dls_s600.dart';
+import 'package:dls_s600/S600SDK.dart';
 ```
 
 ### Example
 
 ```dart
-// Initialize printer
-final printer = DlsS600.printer;
+// Read Thai ID card
+final cardData = await S600SDK.readThaiIDCard();
 
 // Print barcode
-await printer.printBarCode("1234567890");
+await S600SDK.printBarCode("1234567890");
 
-// Generate QR code
-final qrImage = await DlsS600.generateQRCode("https://example.com");
+// Generate and print QR code 
+await S600SDK.printQrCode("https://example.com");
+
+// Print text with formatting
+await S600SDK.printText([
+  {"text": "Header", "fontSize": 24},
+  {"text": "Item 1", "align": "LEFT"},
+  {"text": "Item 2", "align": "RIGHT"}
+]);
+
+// Print image from assets
+final ByteData data = await rootBundle.load('assets/image.png');
+final Uint8List bytes = data.buffer.asUint8List();
+await S600SDK.printImage(bytes);
 ```
 
 ## Platform Setup
