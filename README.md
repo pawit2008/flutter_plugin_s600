@@ -21,7 +21,7 @@ dependencies:
 Import the package:
 
 ```dart
-import 'package:dls_s600/S600SDK.dart';
+import 'package:s600/S600SDK.dart';
 ```
 
 ### Example
@@ -33,7 +33,7 @@ final cardData = await S600SDK.readThaiIDCard();
 // Print barcode
 await S600SDK.printBarCode("1234567890");
 
-// Generate and print QR code 
+// Generate and print QR code
 await S600SDK.printQrCode("https://example.com");
 
 // Print text with formatting
