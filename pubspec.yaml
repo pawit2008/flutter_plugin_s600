@@ -1,16 +1,22 @@
 name: dls_s600
 description: A Flutter plugin by Dolly Solutions for S600 device functionality including printing, QR codes, and smart card operations.
 version: 1.0.0
-publish_to: 'https://pub.dev'
+publish_to: "https://pub.dev"
 
 environment:
-  sdk: ^3.6.1
+  sdk: ">=2.17.0 <4.0.0"
+  flutter: ">=1.10.0"
 
 dependencies:
+  image: ^4.1.3 # หรือเวอร์ชันล่าสุด
   flutter:
     sdk: flutter
 
 flutter:
+  uses-material-design: true
+  assets:
+    - assets/dpark-logo-new.png
+    - assets/canvas.bmp
   plugin:
     platforms:
       android:
@@ -23,14 +29,10 @@ dev_dependencies:
   flutter_lints: ^5.0.0
   flutter_launcher_icons: ^0.14.4
 
-flutter:
-  uses-material-design: true
-  assets:
-    - assets/dpark-logo-new.png
-    - assets/canvas.bmp
-
 # ✅ เพิ่ม config สำหรับ flutter_launcher_icons ด้านล่างนี้
 flutter_launcher_icons:
   android: true
   ios: false
   image_path: assets/icon/app_icon.png
+homepage: https://carparkcenter.com
+repository: https://github.com/pawit2008/flutter_plugin_s600
