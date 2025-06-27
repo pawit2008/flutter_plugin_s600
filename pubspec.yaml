@@ -20,7 +20,7 @@ flutter:
     platforms:
       android:
         package: com.dollysolutions.s600
-        pluginClass: DlsS600Plugin
+        pluginClass: ThaiIdCardReaderPlugin
 
 dev_dependencies:
   flutter_test:
