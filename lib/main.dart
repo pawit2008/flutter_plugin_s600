@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:dls_s600/dls_s600.dart';
+import 'S600SDK.dart';
 
 void main() {
   runApp(MyApp());
