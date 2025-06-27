@@ -1,47 +1,47 @@
 package com.dollysolutions.s600;
 
 import android.content.Context;
-import android.util.Log;
-import java.util.ArrayList;
-import java.util.List;
-import androidx.annotation.NonNull;
-import android.util.Base64;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Base64;
+import android.util.Log;
 
-import com.dollysolutions.s600.ICCardActivity;
-import com.dollysolutions.s600.PrinterUtil;
-import com.dollysolutions.s600.SmartPosApplication;
+import androidx.annotation.NonNull;
+
 import com.kp.ktsdkservice.printer.AidlPrinter;
 import com.kp.ktsdkservice.printer.PrintItemObj;
-import om.kp.ktsdkservice.iccard.AidlICCard;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
+import om.kp.ktsdkservice.iccard.AidlICCard;
+
+import io.flutter.embedding.engine.plugins.FlutterPlugin;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
-import io.flutter.plugin.common.BinaryMessenger;
 
+/** ThaiIdCardReaderPlugin */
 public class ThaiIdCardReaderPlugin implements FlutterPlugin, MethodChannel.MethodCallHandler {
   private static final String TAG = "ThaiPlugin";
-  private final Context context;
-  private final MethodChannel channel;
-
-  public ThaiIdCardReaderPlugin(Context context, BinaryMessenger messenger) {
-    this.context = context;
-    this.channel = new MethodChannel(messenger, "thai_id_card_reader");
-    this.channel.setMethodCallHandler(this);
-    Log.d(TAG, "✅ Plugin manually registered");
-  }
+  private MethodChannel channel;
+  private Context context;
 
   @Override
   public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
-    channel = new MethodChannel(flutterPluginBinding.getBinaryMessenger(), "thai_id_card_reader");
-    channel.setMethodCallHandler(this);
+    this.context = flutterPluginBinding.getApplicationContext();
+    this.channel = new MethodChannel(flutterPluginBinding.getBinaryMessenger(), "thai_id_card_reader");
+    this.channel.setMethodCallHandler(this);
+    Log.d(TAG, "✅ Plugin registered via FlutterPlugin");
   }
 
   @Override
   public void onDetachedFromEngine(@NonNull FlutterPluginBinding binding) {
-    channel.setMethodCallHandler(null);
+    if (channel != null) {
+      channel.setMethodCallHandler(null);
+    }
+    channel = null;
+    context = null;
   }
 
   @Override
@@ -50,7 +50,6 @@ public class ThaiIdCardReaderPlugin implements FlutterPlugin, MethodChannel.Meth
       case "getPlatformVersion":
         result.success("Android " + android.os.Build.VERSION.RELEASE);
         break;
-
       case "readThaiIDCard":
         handleReadThaiIDCard(result);
         break;
@@ -61,7 +60,6 @@ public class ThaiIdCardReaderPlugin implements FlutterPlugin, MethodChannel.Meth
         handlePrintBarCode(call, result);
         break;
       case "printText":
-        Log.d(TAG, "handlePrintText Start");
         handlePrintText(call, result);
         break;
       case "printImage":
@@ -70,64 +68,73 @@ public class ThaiIdCardReaderPlugin implements FlutterPlugin, MethodChannel.Meth
       case "printerTest":
         handlePrinterTest(result);
         break;
-
       default:
         result.notImplemented();
         break;
     }
   }
 
+  private void handleReadThaiIDCard(MethodChannel.Result result) {
+    try {
+      SmartPosApplication app = SmartPosApplication.getInstance();
+      AidlICCard icCard = null;
+      int retry = 0;
+      while (retry < 5 && icCard == null) {
+        icCard = app.aidlICCard;
+        Thread.sleep(500);
+        retry++;
+      }
+
+      if (icCard == null) {
+        result.error("ICCARD_NULL", "ICCard service not available", null);
+        return;
+      }
+
+      Map<String, String> cardData = ICCardActivity.readThaiIDCard(icCard);
+      if (cardData != null && !cardData.isEmpty()) {
+        result.success(cardData);
+      } else {
+        result.error("READ_ERROR", "No data received from ID card", null);
+      }
+
+    } catch (Exception e) {
+      Log.e(TAG, "Exception reading ID card", e);
+      result.error("READ_ERROR", e.getMessage(), null);
+    }
+  }
+
   private void handlePrintQrCode(MethodCall call, MethodChannel.Result result) {
     String data = call.argument("barCodeData");
-    if (data == null || data.isEmpty()) {
-      result.error("INVALID", " data missing", null);
-      return;
-    }
     try {
-
       AidlPrinter printer = SmartPosApplication.getInstance().printer;
       if (printer == null) {
         result.error("PRINTER_NULL", "Printer not available", null);
         return;
       }
-
-      PrinterUtil.printQrCode(context, printer, data); // ใช้ method ที่เราทำไว้
+      PrinterUtil.printQrCode(context, printer, data);
       result.success("QrCode printed");
     } catch (Exception e) {
-      result.error("EXCEPTION", "Exception: " + e.getMessage(), null);
+      result.error("EXCEPTION", e.getMessage(), null);
     }
   }
 
   private void handlePrintBarCode(MethodCall call, MethodChannel.Result result) {
     String data = call.argument("barCodeData");
-    if (data == null || data.isEmpty()) {
-      result.error("INVALID", " data missing", null);
-      return;
-    }
     try {
-
       AidlPrinter printer = SmartPosApplication.getInstance().printer;
       if (printer == null) {
         result.error("PRINTER_NULL", "Printer not available", null);
         return;
       }
-
-      PrinterUtil.printBarCode(context, printer, data); // ใช้ method ที่เราทำไว้
+      PrinterUtil.printBarCode(context, printer, data);
       result.success("BarCode printed");
     } catch (Exception e) {
-      result.error("EXCEPTION", "Exception: " + e.getMessage(), null);
+      result.error("EXCEPTION", e.getMessage(), null);
     }
   }
 
   private void handlePrintText(MethodCall call, MethodChannel.Result result) {
     List<Map<String, Object>> items = call.argument("items");
-
-    if (items == null || items.isEmpty()) {
-      Log.d(TAG, "No items to print");
-      result.error("INVALID", "No items to print", null);
-      return;
-    }
-    Log.d(TAG, "Print Prepairing..");
     ArrayList<PrintItemObj> printList = new ArrayList<>();
 
     for (Map<String, Object> item : items) {
@@ -146,7 +153,6 @@ public class ThaiIdCardReaderPlugin implements FlutterPlugin, MethodChannel.Meth
         align = PrintItemObj.ALIGN.RIGHT;
 
       PrintItemObj obj;
-
       if (lineSpacing != -1 && letterSpacing != -1) {
         obj = new PrintItemObj(text, fontSize, bold, align, underline, true, lineSpacing, letterSpacing);
       } else if (lineSpacing != -1) {
@@ -161,30 +167,27 @@ public class ThaiIdCardReaderPlugin implements FlutterPlugin, MethodChannel.Meth
 
       printList.add(obj);
     }
-    Log.d(TAG, "Print Starting..");
-    AidlPrinter printer = SmartPosApplication.getInstance().printer;
-    if (printer == null) {
-      result.error("PRINTER_NULL", "Printer is not ready", null);
-      return;
+
+    try {
+      AidlPrinter printer = SmartPosApplication.getInstance().printer;
+      if (printer == null) {
+        result.error("PRINTER_NULL", "Printer not available", null);
+        return;
+      }
+      PrinterUtil.printText(context, printer, printList);
+      result.success("Text printed");
+    } catch (Exception e) {
+      result.error("PRINT_FAIL", e.getMessage(), null);
     }
-    Log.d(TAG, "Print Printing..");
-    PrinterUtil.printText(context, printer, printList);
-    result.success("Printed text list");
   }
 
   private void handlePrintImage(MethodCall call, MethodChannel.Result result) {
     String base64 = call.argument("imageBase64");
-    if (base64 == null || base64.isEmpty()) {
-      result.error("INVALID", "Image data missing", null);
-      return;
-    }
-
     try {
       byte[] imageBytes = Base64.decode(base64, Base64.DEFAULT);
       Bitmap bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
-
       if (bitmap == null) {
-        result.error("DECODE_ERROR", "Failed to decode base64 image", null);
+        result.error("DECODE_ERROR", "Image decode failed", null);
         return;
       }
 
@@ -194,82 +197,24 @@ public class ThaiIdCardReaderPlugin implements FlutterPlugin, MethodChannel.Meth
         return;
       }
 
-      PrinterUtil.printBitmap(context, printer, bitmap); // ใช้ method ที่เราทำไว้
+      PrinterUtil.printBitmap(context, printer, bitmap);
       result.success("Image printed");
     } catch (Exception e) {
-      result.error("EXCEPTION", "Exception: " + e.getMessage(), null);
-    }
-  }
-
-  private void handleReadThaiIDCard(MethodChannel.Result result) {
-    try {
-      SmartPosApplication app = SmartPosApplication.getInstance();
-      if (app == null) {
-        result.error("APP_NULL", "SmartPosApplication instance not available", null);
-        return;
-      }
-
-      AidlICCard icCard = null;
-      int retry = 0;
-      while (retry < 5 && icCard == null) {
-        icCard = app.aidlICCard;
-        if (icCard == null) {
-          Log.d(TAG, "⌛ Waiting for ICCard service...");
-          Thread.sleep(500);
-          retry++;
-        }
-      }
-
-      if (icCard == null) {
-        result.error("ICCARD_NULL", "ICCard service not available after retries", null);
-        return;
-      }
-
-      Map<String, String> cardData = ICCardActivity.readThaiIDCard(icCard);
-
-      if (cardData != null && !cardData.isEmpty()) {
-        result.success(cardData);
-      } else {
-        result.error("READ_ERROR", "Failed to read ID card: No data received", null);
-      }
-    } catch (Exception e) {
-      Log.e(TAG, "❌ Exception reading ID card", e);
-      result.error("READ_ERROR", "Exception reading ID card: " + e.getMessage(), null);
+      result.error("PRINT_IMAGE_FAIL", e.getMessage(), null);
     }
   }
 
   private void handlePrinterTest(MethodChannel.Result result) {
     try {
-      Log.d(TAG, "🖨️ Starting printer test...");
-
-      SmartPosApplication app = SmartPosApplication.getInstance();
-      if (app == null) {
-        result.error("APP_NULL", "SmartPosApplication instance not available", null);
-        return;
-      }
-
-      AidlPrinter printer = null;
-      int retry = 0;
-      while (retry < 5 && printer == null) {
-        printer = app.printer;
-        if (printer == null) {
-          Log.d(TAG, "⌛ Waiting for printer service...");
-          Thread.sleep(500);
-          retry++;
-        }
-      }
-
+      AidlPrinter printer = SmartPosApplication.getInstance().printer;
       if (printer == null) {
-        result.error("PRINTER_NULL", "Printer service not available after retries", null);
+        result.error("PRINTER_NULL", "Printer not available", null);
         return;
       }
-
       PrinterUtil.printReceipt(context, printer);
-      result.success("Printed test receipt successfully");
-
+      result.success("Test print completed");
     } catch (Exception e) {
-      Log.e(TAG, "❌ Exception during printerTest", e);
-      result.error("PRINT_ERROR", "Failed to print: " + e.getMessage(), null);
+      result.error("PRINT_TEST_FAIL", e.getMessage(), null);
     }
   }
 }

@@ -1,6 +1,6 @@
 name: dls_s600
 description: A Flutter plugin by Dolly Solutions for S600 device functionality including printing, QR codes, and smart card operations.
-version: 1.0.0+2
+version: 1.0.0+3
 
 environment:
   sdk: ">=2.17.0 <4.0.0"
