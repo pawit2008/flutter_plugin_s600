@@ -3,17 +3,15 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'dart:convert';
 import 'dart:typed_data';
-import 'package:flutter/widgets.dart';
-import 'package:image/image.dart' as img;
 
 class S600SDK {
   static const MethodChannel _channel = MethodChannel('thai_id_card_reader');
 
   static Future<Map<String, dynamic>> readThaiIDCard() async {
     try {
-      if (kDebugMode) {
-        print('✅ Card Data:');
-      }
+      // if (kDebugMode) {
+      //   print('✅ Card Data:');
+      // }
       final Map<dynamic, dynamic> result =
           await _channel.invokeMethod('readThaiIDCard');
       return Map<String, dynamic>.from(result);
@@ -27,16 +25,16 @@ class S600SDK {
       final result = await _channel.invokeMethod('printerTest');
       return result;
     } on PlatformException catch (e) {
-      print('❌ Printer test failed: ${e.message}');
-      print('❌ Details: ${e.details}');
-      print('❌ Stacktrace: ${e.stacktrace}');
+      // print('❌ Printer test failed: ${e.message}');
+      // print('❌ Details: ${e.details}');
+      // print('❌ Stacktrace: ${e.stacktrace}');
       throw Exception("Failed to test printer: ${e.message}");
     } catch (e) {
-      print('❌ Unexpected error in printerTest: $e');
-      print('❌ Error type: ${e.runtimeType}');
-      if (e is MissingPluginException) {
-        print('❌ Missing plugin implementation!');
-      }
+      // print('❌ Unexpected error in printerTest: $e');
+      // print('❌ Error type: ${e.runtimeType}');
+      // if (e is MissingPluginException) {
+      //   print('❌ Missing plugin implementation!');
+      // }
       rethrow;
     }
   }

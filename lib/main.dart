@@ -48,10 +48,10 @@ class _S600ScreenState extends State<S600Screen> {
 
   Future<void> _printCardData() async {
     try {
-      print('Printing card data...');
+      //print('Printing card data...');
       final ByteData data = await rootBundle.load('assets/dpark-logo-new.png');
       final Uint8List bytes = data.buffer.asUint8List();
-      // await S600SDK.printImage(bytes);
+      await S600SDK.printImage(bytes);
       // await S600SDK.printQrCode('test');
 
       // await S600SDK.printBarCode('test');
