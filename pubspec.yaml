@@ -1,5 +1,5 @@
-name: s600_printer
-description: A Flutter plugin for S600 printer and device functionality including barcode printing, QR code generation, and smart card operations.
+name: dls_s600
+description: A Flutter plugin by Dolly Solutions for S600 device functionality including printing, QR codes, and smart card operations.
 version: 1.0.0
 publish_to: 'https://pub.dev'
 
@@ -14,8 +14,8 @@ flutter:
   plugin:
     platforms:
       android:
-        package: com.dollysolutions.s600
-        pluginClass: S600Plugin
+        package: com.dollysolutions.dls_s600
+        pluginClass: DlsS600Plugin
 
 dev_dependencies:
   flutter_test:
