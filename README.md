@@ -1,16 +1,51 @@
-# thai_id_card_reader_app
+# DLS S600 Flutter Plugin
 
-A new Flutter project.
+A Flutter plugin for Dolly Solutions S600 device functionality including:
+- Barcode printing
+- QR code generation
+- Smart card operations
+- Device service binding
 
-## Getting Started
+## Installation
 
-This project is a starting point for a Flutter application.
+Add this to your package's pubspec.yaml file:
 
-A few resources to get you started if this is your first Flutter project:
+```yaml
+dependencies:
+  dls_s600: ^1.0.0
+```
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Usage
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Import the package:
+
+```dart
+import 'package:dls_s600/dls_s600.dart';
+```
+
+### Example
+
+```dart
+// Initialize printer
+final printer = DlsS600.printer;
+
+// Print barcode
+await printer.printBarCode("1234567890");
+
+// Generate QR code
+final qrImage = await DlsS600.generateQRCode("https://example.com");
+```
+
+## Platform Setup
+
+### Android
+
+Add these permissions to your AndroidManifest.xml if not already present:
+
+```xml
+<uses-permission android:name="android.permission.INTERNET"/>
+```
+
+## License
+
+MIT
