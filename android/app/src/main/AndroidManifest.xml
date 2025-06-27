@@ -2,12 +2,12 @@
     >
 
     <application
-        android:name="com.dollysolutions.dls_s600.SmartPosApplication"
+        android:name="com.dollysolutions.s600.SmartPosApplication"
         android:label="S600 Flutter Test"
         android:icon="@mipmap/ic_launcher">
 
         <activity
-            android:name="com.dollysolutions.dls_s600.MainActivity"
+            android:name="com.dollysolutions.s600.MainActivity"
             android:exported="true"
             android:launchMode="singleTop"
             android:taskAffinity=""
