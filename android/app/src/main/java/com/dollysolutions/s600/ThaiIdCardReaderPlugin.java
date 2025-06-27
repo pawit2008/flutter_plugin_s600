@@ -21,7 +21,7 @@ import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.BinaryMessenger;
 
-public class ThaiIdCardReaderPlugin implements MethodChannel.MethodCallHandler {
+public class ThaiIdCardReaderPlugin implements FlutterPlugin, MethodChannel.MethodCallHandler {
   private static final String TAG = "ThaiPlugin";
   private final Context context;
   private final MethodChannel channel;
@@ -31,6 +31,17 @@ public class ThaiIdCardReaderPlugin implements MethodChannel.MethodCallHandler {
     this.channel = new MethodChannel(messenger, "thai_id_card_reader");
     this.channel.setMethodCallHandler(this);
     Log.d(TAG, "✅ Plugin manually registered");
+  }
+
+  @Override
+  public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
+    channel = new MethodChannel(flutterPluginBinding.getBinaryMessenger(), "thai_id_card_reader");
+    channel.setMethodCallHandler(this);
+  }
+
+  @Override
+  public void onDetachedFromEngine(@NonNull FlutterPluginBinding binding) {
+    channel.setMethodCallHandler(null);
   }
 
   @Override
