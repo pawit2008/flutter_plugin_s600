@@ -1,6 +1,6 @@
 name: dls_s600_example
 description: Demonstrates how to use the dls_s600 plugin
-publish_to: 'none'
+publish_to: "none"
 version: 1.0.0
 
 environment:
@@ -10,8 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  dls_s600:
-    path: ../
+  dls_s600: ^1.0.0
 
 dev_dependencies:
   flutter_test:
